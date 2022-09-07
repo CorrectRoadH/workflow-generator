@@ -3,9 +3,12 @@ import { useDrop } from "react-dnd";
 import type { RootState } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import { move } from "./ShowSlice";
+import ShowBox from "./ShowBox";
+import BoxStruct from "../data/BoxStruct";
 
-const Show: React.FC = (): JSX.Element => {
-  const count = useSelector((state: RootState) => state.show.value);
+const Show = () => {
+  const BoxArray = useSelector((state: RootState) => state.show.BoxArray);
+
   const dispatch = useDispatch();
 
   const [collectedProps, drop] = useDrop(() => ({
@@ -15,15 +18,20 @@ const Show: React.FC = (): JSX.Element => {
       if (didDrop) {
         return;
       }
-      console.log("hello");
-      dispatch(move(1));
+      dispatch(move());
     },
   }));
+
+  const componentList = [];
+
+  BoxArray.forEach((item: BoxStruct, index) =>
+    componentList.push(<ShowBox key={index} boxdata={item} />)
+  );
 
   return (
     <div className="bg-red-300 h-20" ref={drop}>
       Drop Target Count:
-      {count}
+      {componentList}
     </div>
   );
 };
