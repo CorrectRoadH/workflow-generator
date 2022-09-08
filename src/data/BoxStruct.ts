@@ -1,3 +1,5 @@
+import BoxStructInstance from "./BoxStructInstance";
+
 export default interface BoxStruct {
   title: string;
   argNum: number;
@@ -5,19 +7,5 @@ export default interface BoxStruct {
   argsTip: Array<string>;
   componentType: string;
   code: string;
-  children: Array<BoxStruct>;
+  children: Array<number>;
 }
-
-export const generateCode = (boxdata: BoxStruct) => {
-  if (boxdata.componentType === "singleComponent") {
-    return boxdata.code;
-  }
-  if (boxdata.componentType === "container") {
-    let code = boxdata.code;
-
-    boxdata.children.forEach((item) => {
-      code += item.code;
-    });
-    return code;
-  }
-};

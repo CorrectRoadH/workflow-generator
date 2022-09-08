@@ -3,14 +3,14 @@ import BoxStruct from "./BoxStruct";
 export const githubComponentData = new Array<BoxStruct>(
   {
     title: "执行shell命令",
-    argNum: 1,
-    args: [],
-    argsTip: ["执行内容:"],
+    argNum: 2,
+    args: ["请输入名称", "执行内容"],
+    argsTip: ["执行名", "执行内容:"],
     componentType: "singleComponent",
     code: `    
-      - name: run Shell
+      - name: $replace0$
         run: |
-          npm install`,
+          $replace1$`,
     children: [],
   },
   {

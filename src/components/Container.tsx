@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { ShowBoxProps } from "./ShowBoxProps";
 import { useDrop } from "react-dnd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  generageCode,
   InputValue,
   moveToContainer,
   setComponentInputValue,
 } from "./AppSlice";
-import Box from "./Box";
+import ShowBox from "./ShowBox";
+import { RootState } from "../store";
 
 const Container = ({ boxdata }: ShowBoxProps) => {
   const dispatch = useDispatch();
+  const presentComponent = useSelector(
+    (state: RootState) => state.app.presentComponent
+  );
 
-  const [{ _isDragging }, drag, dragPreview] = useDrag(() => ({
+  const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
     type: "ShowContainer",
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -50,8 +55,8 @@ const Container = ({ boxdata }: ShowBoxProps) => {
   }
 
   const childrenElement: Array<JSX.Element> = [];
-  boxdata.children.forEach((item, index) =>
-    childrenElement.push(<Box key={index} boxdata={item} />)
+  boxdata.children.forEach((id, index) =>
+    childrenElement.push(<ShowBox key={index} boxdata={presentComponent[id]} />)
   ); // todo using useMeno to improve Performent
 
   const interState: Array<JSX.Element> = [];
@@ -78,7 +83,7 @@ const Container = ({ boxdata }: ShowBoxProps) => {
 
   return (
     <div
-      className="flex bg-orange-200	 hover:bg-orange-500 rounded-md w-72 min-h-40 m-2"
+      className="flex bg-orange-200	 hover:bg-orange-500 rounded-md min-w-72 min-h-40 m-2"
       ref={dragPreview}
       style={{ backgroundColor }}
       data-testid="dustbin"

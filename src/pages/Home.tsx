@@ -6,16 +6,10 @@ import Show from "../components/Show";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { useSelector } from "react-redux";
-import BoxStruct, { generateCode } from "../data/BoxStructInstance";
 import Toolbox from "../features/Toolbox";
 
-const Home: React.FC = (): JSX.Element => {
-  const BoxArray = useSelector((state: RootState) => state.app.BoxArray);
-
-  let code = "";
-  BoxArray.forEach((item: BoxStruct) => {
-    code += generateCode(item) + "\n";
-  });
+const Home = () => {
+  const code = useSelector((state: RootState) => state.app.code);
 
   return (
     <DndProvider backend={HTML5Backend}>
