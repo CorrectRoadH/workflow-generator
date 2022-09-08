@@ -31,7 +31,7 @@ const Toolbox = () => {
   );
 
   return (
-    <div className="bg-slate-50 h-screen w-3/12">
+    <div className="bg-slate-50 h-screen">
       <div className="m-3">
         组件区
         <hr />
