@@ -5,6 +5,7 @@ export const githubComponentData = new Array<BoxStruct>(
     title: "执行shell命令",
     argNum: 1,
     args: [],
+    argsTip: ["执行内容:"],
     componentType: "singleComponent",
     code: `    
       - name: run Shell
@@ -16,6 +17,7 @@ export const githubComponentData = new Array<BoxStruct>(
     title: "上传产物到aur",
     argNum: 1,
     args: [],
+    argsTip: ["你的key:"],
     componentType: "singleComponent",
     code: `
   aur-publish:
@@ -40,6 +42,7 @@ export const githubComponentData = new Array<BoxStruct>(
     title: "到github res",
     argNum: 1,
     args: [],
+    argsTip: ["你的key:"],
     componentType: "singleComponent",
     code: `
   release:
@@ -76,11 +79,12 @@ export const githubComponentData = new Array<BoxStruct>(
   {
     title: "阶段",
     argNum: 2,
-    args: [],
+    args: ["请输入", "请输入"],
+    argsTip: ["阶段名:", "docker"],
     componentType: "container",
     code: `
-  name:
-    runs-on: os name
+  name: $replace0$
+    runs-on: $replace1$
     steps:`,
     children: [],
   }

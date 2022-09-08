@@ -1,14 +1,8 @@
 import BoxStruct from "./BoxStruct";
 import * as _ from "lodash";
 
-export default interface BoxStructInstance {
+export default interface BoxStructInstance extends BoxStruct {
   id: string;
-  title: string;
-  argNum: number;
-  args: Array<string>;
-  componentType: string;
-  code: string;
-  children: Array<BoxStructInstance>;
 }
 export const createBoxInstance = (box: BoxStruct) => {
   const newInstance: BoxStructInstance = _.cloneDeep<BoxStruct>(box);
@@ -22,6 +16,12 @@ export const generateCode = (boxdata: BoxStructInstance) => {
   }
   if (boxdata.componentType === "container") {
     let code = boxdata.code;
+
+    console.log(code);
+
+    for (let i = 0; i < boxdata.argNum; i++) {
+      code = code.replace(`$replace${i}$`, boxdata.args[i]);
+    }
 
     boxdata.children.forEach((item) => {
       code += item.code;

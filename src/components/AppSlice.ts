@@ -2,7 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import BoxStruct from "../data/BoxStruct";
 import { githubComponentData } from "../data/intData";
-import BoxStructInstance, { createBoxInstance } from "../data/BoxStructInstance";
+import BoxStructInstance, {
+  createBoxInstance,
+} from "../data/BoxStructInstance";
+import { act } from "@testing-library/react";
+
+export interface InputValue {
+  componentID: string;
+  order: number;
+  value: string;
+}
 
 export interface ShowState {
   BoxArray: Array<BoxStructInstance>;
@@ -11,7 +20,7 @@ export interface ShowState {
 }
 
 const initialState: ShowState = {
-  BoxArray: new Array<BoxStruct>(),
+  BoxArray: new Array<BoxStructInstance>(),
   dragObejct: { title: "null" },
   ComponentArray: githubComponentData,
 };
@@ -28,6 +37,13 @@ export const counterSlice = createSlice({
         }
       });
     },
+    setComponentInputValue: (state, action: PayloadAction<InputValue>) => {
+      state.BoxArray.forEach((item) => {
+        if (item.id === action.payload.componentID) {
+          item.args[action.payload.order] = action.payload.value;
+        }
+      });
+    },
     move: (state) => {
       state.BoxArray.push(createBoxInstance(state.dragObejct));
     },
@@ -41,7 +57,12 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { move, moveToContainer, dragObject, dropObject } =
-  counterSlice.actions;
+export const {
+  move,
+  moveToContainer,
+  setComponentInputValue,
+  dragObject,
+  dropObject,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;

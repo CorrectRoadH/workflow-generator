@@ -6,7 +6,7 @@ import Show from "../components/Show";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import { useSelector } from "react-redux";
-import BoxStruct, { generateCode } from "../data/BoxStruct";
+import BoxStruct, { generateCode } from "../data/BoxStructInstance";
 import Toolbox from "../features/Toolbox";
 
 const Home: React.FC = (): JSX.Element => {
