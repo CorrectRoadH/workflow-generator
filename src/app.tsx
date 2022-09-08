@@ -8,6 +8,7 @@ import "./app.css";
 
 import App from "./components/App";
 import ErrorBoundary from "./components/ErrorBoundary";
+import "./i18n";
 
 const container = document.getElementById("app");
 if (!container) throw new Error("Failed to find the root element");
