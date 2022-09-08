@@ -11,17 +11,17 @@ const Show = () => {
     (state: RootState) => state.app.presentComponent
   );
 
-  const [hasDropped, setHasDropped] = useState(false);
-  const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
+  const [_hasDropped, setHasDropped] = useState(false);
+  const [_hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [{ isOver, isOverCurrent }, drop] = useDrop(
+  const [{ canDrop, isOver, isOverCurrent }, drop] = useDrop(
     () => ({
       accept: "BOX",
       drop(_item: unknown, monitor) {
         const didDrop = monitor.didDrop();
-        if (didDrop) {
+        if (didDrop && !undefined) {
           return;
         }
         setHasDropped(true);
@@ -31,6 +31,7 @@ const Show = () => {
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         isOverCurrent: monitor.isOver({ shallow: true }),
+        canDrop: monitor.canDrop(),
       }),
     }),
     [setHasDropped, setHasDroppedOnChild]
@@ -43,10 +44,12 @@ const Show = () => {
     }
   });
 
-  let backgroundColor = "rgba(0, 0, 0, .5)";
+  let backgroundColor = "rgb(34 211 238)";
 
-  if (isOverCurrent || isOver) {
-    backgroundColor = "darkgreen";
+  if (isOverCurrent || (isOver && undefined)) {
+    backgroundColor = "rgb(8 145 178)";
+  } else if (canDrop) {
+    backgroundColor = "rgb(6 182 212)";
   }
 
   return (

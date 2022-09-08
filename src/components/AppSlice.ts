@@ -21,9 +21,8 @@ export interface ShowState {
 }
 
 const initialState: ShowState = {
-  BoxArray: new Array<BoxStructInstance>(), // 得改成 map形式。坑
   presentComponent: new Array<BoxStructInstance>(),
-  dragObejct: { title: "null" },
+  dragObejct: {} as BoxStruct,
   ComponentArray: githubComponentData,
   code: "",
 };
@@ -63,6 +62,7 @@ export const counterSlice = createSlice({
       state.dragObejct = action.payload;
     },
     generageCode: (state) => {
+      // 没办法做成自动触发，挺坑的，回头研究一下吧。
       let code = "";
       state.presentComponent.forEach((component) => {
         if (component.inTop) {

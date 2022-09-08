@@ -4,7 +4,6 @@ import { ShowBoxProps } from "./ShowBoxProps";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  generageCode,
   InputValue,
   moveToContainer,
   setComponentInputValue,
@@ -18,17 +17,17 @@ const Container = ({ boxdata }: ShowBoxProps) => {
     (state: RootState) => state.app.presentComponent
   );
 
-  const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
+  const [{ isDragging }, _drag, dragPreview] = useDrag(() => ({
     type: "ShowContainer",
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   }));
 
-  const [hasDropped, setHasDropped] = useState(false);
-  const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
+  const [_hasDropped, setHasDropped] = useState(false);
+  const [_hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
 
-  const [{ isOver, isOverCurrent }, drop] = useDrop(
+  const [{ canDrop, isOver, isOverCurrent }, drop] = useDrop(
     () => ({
       accept: "BOX",
       drop(_item: unknown, monitor) {
@@ -43,15 +42,18 @@ const Container = ({ boxdata }: ShowBoxProps) => {
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         isOverCurrent: monitor.isOver({ shallow: true }),
+        canDrop: monitor.canDrop(),
       }),
     }),
     [setHasDropped, setHasDroppedOnChild]
   );
 
-  let backgroundColor = "rgba(0, 0, 0, .5)";
+  let backgroundColor = "rgb(217 249 157)";
 
-  if (isOverCurrent || isOver) {
-    backgroundColor = "darkgreen";
+  if (isOverCurrent || (isOver && false)) {
+    backgroundColor = "rgb(101 163 13)";
+  } else if (canDrop) {
+    backgroundColor = "rgb(163 230 53)";
   }
 
   const childrenElement: Array<JSX.Element> = [];
@@ -83,10 +85,9 @@ const Container = ({ boxdata }: ShowBoxProps) => {
 
   return (
     <div
-      className="flex bg-orange-200	 hover:bg-orange-500 rounded-md min-w-72 min-h-40 m-2"
+      className="flex rounded-md min-w-72 min-h-40 m-2"
       ref={dragPreview}
       style={{ backgroundColor }}
-      data-testid="dustbin"
     >
       &gt;
       <div className="m-auto" role="Handle" ref={drop}>

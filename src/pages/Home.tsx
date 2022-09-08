@@ -15,7 +15,7 @@ const Home = () => {
     <DndProvider backend={HTML5Backend}>
       <div className="flex">
         <Toolbox />
-        <div className="bg-blue-500 h-screen  w-3/12">
+        <div className="bg-cyan-400	 h-screen  w-3/12">
           乐高区
           <Show />
         </div>
