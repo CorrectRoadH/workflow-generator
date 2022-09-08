@@ -78,7 +78,7 @@ const Container = ({ boxdata }: ShowBoxProps) => {
 
   return (
     <div
-      className="flex bg-orange-200	 hover:bg-orange-500 rounded-md w-72 h-40 m-2"
+      className="flex bg-orange-200	 hover:bg-orange-500 rounded-md w-72 min-h-40 m-2"
       ref={dragPreview}
       style={{ backgroundColor }}
       data-testid="dustbin"
