@@ -53,13 +53,15 @@ const Show = () => {
   }
 
   return (
-    <div className=" h-full" style={{ backgroundColor }} ref={drop}>
-      <button className="bg-white" onClick={() => dispatch(generageCode())}>
+    <div className="flex flex-col" style={{ backgroundColor }} >
+      <button className="bg-white " onClick={() => dispatch(generageCode())}>
         generate Code
       </button>
       <br />
-      Drop Target Count:
-      {componentList}
+      <div className="h-full" ref={drop}>
+        Drop Target To Here:
+        {componentList}
+      </div>
     </div>
   );
 };

@@ -13,13 +13,13 @@ const Home = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="flex">
+      <div className="grid grid-cols-3">
         <Toolbox />
-        <div className="bg-cyan-400	 h-screen  w-3/12">
+        <div className="bg-cyan-400	 h-screen">
           乐高区
           <Show />
         </div>
-        <div className="bg-red-500 h-screen w-5/12">
+        <div className="bg-red-500 h-screen">
           代码区
           <br></br>
           <textarea

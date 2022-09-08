@@ -18,7 +18,7 @@ export const githubComponentData = new Array<BoxStruct>(
     argNum: 2,
     args: ["请输入名称", "请输入名称"],
     argsTip: ["脚本名", "分支名:"],
-    componentType: "singleComponent",
+    componentType: "other",
     code: `name: $replace0$
 
 on:
@@ -34,7 +34,7 @@ jobs:`,
     argNum: 1,
     args: [],
     argsTip: ["你的key:"],
-    componentType: "singleComponent",
+    componentType: "Stage",
     code: `
   aur-publish:
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:`,
     argNum: 1,
     args: [],
     argsTip: ["你的key:"],
-    componentType: "singleComponent",
+    componentType: "Stage",
     code: `
   release:
     runs-on: ubuntu-latest
