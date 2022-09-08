@@ -6,7 +6,7 @@ import BoxStruct from "../data/BoxStruct";
 
 const Toolbox = () => {
   const ComponentArray = useSelector(
-    (state: RootState) => state.show.ComponentArray
+    (state: RootState) => state.app.ComponentArray
   );
 
   const area = [];

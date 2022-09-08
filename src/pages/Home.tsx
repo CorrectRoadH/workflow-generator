@@ -10,7 +10,7 @@ import BoxStruct, { generateCode } from "../data/BoxStruct";
 import Toolbox from "../features/Toolbox";
 
 const Home: React.FC = (): JSX.Element => {
-  const BoxArray = useSelector((state: RootState) => state.show.BoxArray);
+  const BoxArray = useSelector((state: RootState) => state.app.BoxArray);
 
   let code = "";
   BoxArray.forEach((item: BoxStruct) => {
@@ -21,7 +21,7 @@ const Home: React.FC = (): JSX.Element => {
     <DndProvider backend={HTML5Backend}>
       <div className="flex">
         <Toolbox />
-        <div className="bg-green-500 h-screen  w-3/12">
+        <div className="bg-blue-500 h-screen  w-3/12">
           乐高区
           <Show />
         </div>

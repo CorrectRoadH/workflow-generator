@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import type { RootState } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-import { move } from "./ShowSlice";
-import ShowBox from "./ShowBox";
+import { move } from "./AppSlice";
 import BoxStruct from "../data/BoxStruct";
+import ShowComponent from "./ShowComponent";
+import BoxStructInstance from "../data/BoxStructInstance";
 
 const Show = () => {
-  const BoxArray = useSelector((state: RootState) => state.show.BoxArray);
+  const BoxArray = useSelector((state: RootState) => state.app.BoxArray);
+
+  const [hasDropped, setHasDropped] = useState(false);
+  const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [collectedProps, drop] = useDrop(() => ({
-    accept: "BOX",
-    drop(_item: unknown, monitor) {
-      const didDrop = monitor.didDrop();
-      if (didDrop) {
-        return;
-      }
-      dispatch(move());
-    },
-  }));
+  const [{ isOver, isOverCurrent }, drop] = useDrop(
+    () => ({
+      accept: "BOX",
+      drop(_item: unknown, monitor) {
+        const didDrop = monitor.didDrop();
+        if (didDrop) {
+          return;
+        }
+        setHasDropped(true);
+        setHasDroppedOnChild(didDrop);
+        dispatch(move());
+      },
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        isOverCurrent: monitor.isOver({ shallow: true }),
+      }),
+    }),
+    [setHasDropped, setHasDroppedOnChild]
+  );
 
   const componentList = [];
 
-  BoxArray.forEach((item: BoxStruct, index) =>
-    componentList.push(<ShowBox key={index} boxdata={item} />)
+  BoxArray.forEach((item: BoxStructInstance, index) =>
+    componentList.push(<ShowComponent key={index} boxdata={item} />)
   );
 
+  let backgroundColor = "rgba(0, 0, 0, .5)";
+
+  if (isOverCurrent || isOver) {
+    backgroundColor = "darkgreen";
+  }
+
   return (
-    <div className="bg-red-300 h-20" ref={drop}>
+    <div className=" h-full" style={{ backgroundColor }} ref={drop}>
       Drop Target Count:
       {componentList}
     </div>

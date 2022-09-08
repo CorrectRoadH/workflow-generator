@@ -5,20 +5,20 @@ export const githubComponentData = new Array<BoxStruct>(
     title: "执行shell命令",
     argNum: 1,
     args: [],
-    componentType: "component",
-    code: `
-    - name: run Shell
-    run: |
-      npm install
-    `,
+    componentType: "singleComponent",
+    code: `    
+      - name: run Shell
+        run: |
+          npm install`,
+    children: [],
   },
   {
     title: "上传产物到aur",
     argNum: 1,
     args: [],
-    componentType: "component",
+    componentType: "singleComponent",
     code: `
-aur-publish:
+  aur-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,16 +33,16 @@ aur-publish:
           ssh_private_key: \${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
           ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
-
     `,
+    children: [],
   },
   {
-    title: "发布到github release",
+    title: "到github res",
     argNum: 1,
     args: [],
-    componentType: "component",
+    componentType: "singleComponent",
     code: `
-release:
+  release:
     runs-on: ubuntu-latest
     steps:
     - name: Create Draft Release
@@ -71,6 +71,18 @@ release:
     with:
         release_id: \${{ steps.create_release.outputs.id }}
     `,
+    children: [],
+  },
+  {
+    title: "阶段",
+    argNum: 2,
+    args: [],
+    componentType: "container",
+    code: `
+  name:
+    runs-on: os name
+    steps:`,
+    children: [],
   }
 );
 

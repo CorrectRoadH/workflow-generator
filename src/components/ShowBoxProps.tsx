@@ -1,5 +1,5 @@
-import BoxStruct from "../data/BoxStruct";
+import BoxStructInstance from "../data/BoxStructInstance";
 
 export interface ShowBoxProps {
-  boxdata: BoxStruct;
+  boxdata: BoxStructInstance;
 }

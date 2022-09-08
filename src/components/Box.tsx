@@ -2,7 +2,7 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import BoxStruct from "../data/BoxStruct";
 import { useDispatch } from "react-redux";
-import { dragObject } from "./ShowSlice";
+import { dragObject } from "./AppSlice";
 
 interface BoxProps {
   boxdata: BoxStruct;
@@ -17,7 +17,7 @@ const Box = ({ boxdata }: BoxProps) => {
     item: () => {
       console.log("start");
       dispatch(dragObject(boxdata));
-      return { type: "fuck", id: 1 };
+      return boxdata;
     },
     end: () => {
       console.log("end");
