@@ -5,6 +5,7 @@ import { githubComponentData } from "../data/intData";
 import BoxStructInstance, {
   createBoxInstance,
 } from "../data/BoxStructInstance";
+import githubState from "../data/githubState";
 
 export interface InputValue {
   componentID: number;
@@ -21,7 +22,7 @@ export interface ShowState {
 }
 
 const initialState: ShowState = {
-  presentComponent: new Array<BoxStructInstance>(),
+  presentComponent: githubState,
   dragObejct: {} as BoxStruct,
   ComponentArray: githubComponentData,
   code: "",

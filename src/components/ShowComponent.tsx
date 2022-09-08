@@ -6,9 +6,13 @@ import { ShowBoxProps } from "./ShowBoxProps";
 const ShowComponent = ({ boxdata }: ShowBoxProps) => {
   if (boxdata.componentType === "singleComponent") {
     return <ShowBox boxdata={boxdata} />;
-  } else {
+  }
+
+  if (boxdata.componentType === "container") {
     return <Container boxdata={boxdata} />;
   }
+
+  return <ShowBox boxdata={boxdata} />;
 };
 
 export default ShowComponent;

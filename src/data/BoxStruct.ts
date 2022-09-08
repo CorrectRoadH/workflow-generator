@@ -1,5 +1,3 @@
-import BoxStructInstance from "./BoxStructInstance";
-
 export default interface BoxStruct {
   title: string;
   argNum: number;

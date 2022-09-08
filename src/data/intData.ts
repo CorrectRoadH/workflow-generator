@@ -14,6 +14,22 @@ export const githubComponentData = new Array<BoxStruct>(
     children: [],
   },
   {
+    title: "yaml 基础",
+    argNum: 2,
+    args: ["请输入名称", "请输入名称"],
+    argsTip: ["脚本名", "分支名:"],
+    componentType: "singleComponent",
+    code: `name: $replace0$
+
+on:
+  push:
+    branches:
+      - $replace1$
+
+jobs:`,
+    children: [],
+  },
+  {
     title: "上传产物到aur",
     argNum: 1,
     args: [],
