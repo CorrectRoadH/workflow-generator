@@ -9,7 +9,7 @@ const Toolbox = () => {
     (state: RootState) => state.app.ComponentArray
   );
 
-  const area = [];
+  const area: Array<JSX.Element> = [];
 
   ComponentArray.forEach((item: BoxStruct, index) => {
     area.push(<Box key={index} boxdata={item} />);

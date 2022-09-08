@@ -49,12 +49,12 @@ const Container = ({ boxdata }: ShowBoxProps) => {
     backgroundColor = "darkgreen";
   }
 
-  const childrenElement = [];
+  const childrenElement: Array<JSX.Element> = [];
   boxdata.children.forEach((item, index) =>
     childrenElement.push(<Box key={index} boxdata={item} />)
   ); // todo using useMeno to improve Performent
 
-  const interState = [];
+  const interState: Array<JSX.Element> = [];
   for (let i = 0; i < boxdata.argNum; i++) {
     interState.push(
       <div key={i}>

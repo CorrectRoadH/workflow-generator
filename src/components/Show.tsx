@@ -35,7 +35,7 @@ const Show = () => {
     [setHasDropped, setHasDroppedOnChild]
   );
 
-  const componentList = [];
+  const componentList: Array<JSX.Element> = [];
 
   BoxArray.forEach((item: BoxStructInstance, index) =>
     componentList.push(<ShowComponent key={index} boxdata={item} />)
