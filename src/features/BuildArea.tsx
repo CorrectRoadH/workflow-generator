@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import type { RootState } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-import { generageCode, move } from "./AppSlice";
-import ShowComponent from "./ShowComponent";
-import BoxStructInstance from "../data/BoxStructInstance";
+import { generageCode, move } from "../components/AppSlice";
+import ShowComponent from "../components/viusalBlocks/ShowComponent";
+import BoxStructInstance from "../data/BlockStructInstance";
+import { useTranslation } from "react-i18next";
 
-const Show = () => {
+const BuildArea = () => {
   const presentComponent = useSelector(
     (state: RootState) => state.app.presentComponent
   );
+  const { t, i18n } = useTranslation();
 
   const [_hasDropped, setHasDropped] = useState(false);
   const [_hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
@@ -53,17 +55,20 @@ const Show = () => {
   }
 
   return (
-    <div className="flex flex-col" style={{ backgroundColor }} >
-      <button className="bg-white " onClick={() => dispatch(generageCode())}>
-        generate Code
-      </button>
-      <br />
-      <div className="h-full" ref={drop}>
-        Drop Target To Here:
-        {componentList}
+    <div className="bg-cyan-400	 h-screen">
+      {t("area2")}
+      <div className="flex flex-col" style={{ backgroundColor }}>
+        <button className="bg-white " onClick={() => dispatch(generageCode())}>
+          generate Code
+        </button>
+        <br />
+        <div className="h-full" ref={drop}>
+          Drop Target To Here:
+          {componentList}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Show;
+export default BuildArea;

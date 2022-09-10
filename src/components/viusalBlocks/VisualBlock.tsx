@@ -1,10 +1,10 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { InputValue, setComponentInputValue } from "./AppSlice";
-import { ShowBoxProps } from "./ShowBoxProps";
+import { InputValue, setComponentInputValue } from "../AppSlice";
+import { VisualBlockProps } from "./VisualBlockProps";
 import { useDispatch } from "react-redux";
 
-const ShowBox = ({ boxdata }: ShowBoxProps) => {
+const VisualBlock = ({ boxdata }: VisualBlockProps) => {
   const dispatch = useDispatch();
 
   const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
@@ -50,4 +50,4 @@ const ShowBox = ({ boxdata }: ShowBoxProps) => {
   );
 };
 
-export default ShowBox;
+export default VisualBlock;

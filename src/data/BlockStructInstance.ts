@@ -1,18 +1,18 @@
-import BoxStruct from "./BoxStruct";
+import BlockStruct from "./BlockStruct";
 import * as _ from "lodash";
 
-export default interface BoxStructInstance extends BoxStruct {
+export default interface BlockStructInstance extends BlockStruct {
   id: number;
   inTop: boolean; //是否是在面板的最外面，决定了渲染
 }
-export const createBoxInstance = (box: BoxStruct, id: number) => {
-  const newInstance: BoxStructInstance = _.cloneDeep<BoxStruct>(box);
+export const createBoxInstance = (box: BlockStruct, id: number) => {
+  const newInstance: BlockStructInstance = _.cloneDeep<BlockStruct>(box);
   newInstance.id = id;
   newInstance.inTop = true;
   return newInstance;
 };
 
-export const generateCode = (boxdata: BoxStructInstance) => {
+export const generateCode = (boxdata: BlockStructInstance) => {
   let temp_code = boxdata.code;
 
   for (let i = 0; i < boxdata.argNum; i++) {

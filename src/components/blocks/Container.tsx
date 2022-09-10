@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useDrag } from "react-dnd";
-import { ShowBoxProps } from "./ShowBoxProps";
+import { VisualBlockProps } from "../viusalBlocks/VisualBlockProps";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   InputValue,
   moveToContainer,
   setComponentInputValue,
-} from "./AppSlice";
-import ShowBox from "./ShowBox";
-import { RootState } from "../store";
+} from "../AppSlice";
+import VisualBlock from "../viusalBlocks/VisualBlock";
+import { RootState } from "../../store";
 
-const Container = ({ boxdata }: ShowBoxProps) => {
+const Container = ({ boxdata }: VisualBlockProps) => {
   const dispatch = useDispatch();
   const presentComponent = useSelector(
     (state: RootState) => state.app.presentComponent
@@ -58,7 +58,9 @@ const Container = ({ boxdata }: ShowBoxProps) => {
 
   const childrenElement: Array<JSX.Element> = [];
   boxdata.children.forEach((id, index) =>
-    childrenElement.push(<ShowBox key={index} boxdata={presentComponent[id]} />)
+    childrenElement.push(
+      <VisualBlock key={index} boxdata={presentComponent[id]} />
+    )
   ); // todo using useMeno to improve Performent
 
   const interState: Array<JSX.Element> = [];

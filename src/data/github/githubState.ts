@@ -1,4 +1,4 @@
-import BoxStructInstance from "./BoxStructInstance";
+import BoxStructInstance from "../BlockStructInstance";
 
 const githubState: Array<BoxStructInstance> = new Array<BoxStructInstance>();
 githubState.push({

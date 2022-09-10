@@ -1,12 +1,12 @@
-import BoxStruct from "./BoxStruct";
+import BlockStruct from "../BlockStruct";
 
-export const githubComponentData = new Array<BoxStruct>(
+export const githubComponentData = new Array<BlockStruct>(
   {
     title: "执行shell命令",
     argNum: 2,
     args: ["请输入名称", "执行内容"],
     argsTip: ["执行名", "执行内容:"],
-    componentType: "singleComponent",
+    componentType: "block",
     code: `    
       - name: $replace0$
         run: |

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import BoxStruct from "../data/BoxStruct";
-import { githubComponentData } from "../data/intData";
-import BoxStructInstance, {
+import BlockStruct from "../data/BlockStruct";
+import { githubComponentData } from "../data/github/intData";
+import BlockStructInstance, {
   createBoxInstance,
-} from "../data/BoxStructInstance";
-import githubState from "../data/githubState";
+} from "../data/BlockStructInstance";
+import githubState from "../data/github/githubState";
 
 export interface InputValue {
   componentID: number;
@@ -14,16 +14,16 @@ export interface InputValue {
 }
 
 export interface ShowState {
-  dragObejct: BoxStruct;
-  presentComponent: Array<BoxStructInstance>;
+  dragObejct: BlockStruct;
+  presentComponent: Array<BlockStructInstance>;
   // 不用map是因为redux不能传递不可序列化的对象
-  ComponentArray: Array<BoxStruct>;
+  ComponentArray: Array<BlockStruct>;
   code: string;
 }
 
 const initialState: ShowState = {
   presentComponent: githubState,
-  dragObejct: {} as BoxStruct,
+  dragObejct: {} as BlockStruct,
   ComponentArray: githubComponentData,
   code: "",
 };
@@ -56,10 +56,10 @@ export const counterSlice = createSlice({
       state.presentComponent.push(new_instance);
       // 因为 isTop默认是true，这里不用初始化。
     },
-    dragObject: (state, action: PayloadAction<BoxStruct>) => {
+    dragObject: (state, action: PayloadAction<BlockStruct>) => {
       state.dragObejct = action.payload;
     },
-    dropObject: (state, action: PayloadAction<BoxStruct>) => {
+    dropObject: (state, action: PayloadAction<BlockStruct>) => {
       state.dragObejct = action.payload;
     },
     generageCode: (state) => {

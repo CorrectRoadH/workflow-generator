@@ -1,34 +1,34 @@
 import React from "react";
-import Box from "../components/Box";
+import Block from "../components/blocks/Block";
 import type { RootState } from "../store";
 import { useSelector } from "react-redux";
-import BoxStruct from "../data/BoxStruct";
+import BlockStruct from "../data/BlockStruct";
 
 const Toolbox = () => {
   const ComponentArray = useSelector(
     (state: RootState) => state.app.ComponentArray
   );
 
-  const singleComponent: Array<JSX.Element> = [];
+  const blocks: Array<JSX.Element> = [];
   ComponentArray.filter(
-    (e: BoxStruct) => e.componentType === "singleComponent"
-  ).forEach((item: BoxStruct, index) => {
-    singleComponent.push(<Box key={index} boxdata={item} />);
+    (e: BlockStruct) => e.componentType === "block"
+  ).forEach((item: BlockStruct, index) => {
+    blocks.push(<Block key={index} blockdata={item} />);
   });
 
   const Container: Array<JSX.Element> = [];
   ComponentArray.filter(
-    (e: BoxStruct) => e.componentType === "container"
-  ).forEach((item: BoxStruct, index) => {
-    Container.push(<Box key={index} boxdata={item} />);
+    (e: BlockStruct) => e.componentType === "container"
+  ).forEach((item: BlockStruct, index) => {
+    Container.push(<Block key={index} blockdata={item} />);
   });
 
   const Stage: Array<JSX.Element> = [];
-  ComponentArray.filter((e: BoxStruct) => e.componentType === "Stage").forEach(
-    (item: BoxStruct, index) => {
-      Stage.push(<Box key={index} boxdata={item} />);
-    }
-  );
+  ComponentArray.filter(
+    (e: BlockStruct) => e.componentType === "Stage"
+  ).forEach((item: BlockStruct, index) => {
+    Stage.push(<Block key={index} blockdata={item} />);
+  });
 
   return (
     <div className="bg-slate-50 h-screen">
@@ -36,7 +36,7 @@ const Toolbox = () => {
         组件区
         <hr />
         普通组件
-        {singleComponent}
+        {blocks}
         <hr />
         容器
         {Container}

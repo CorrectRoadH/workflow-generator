@@ -1,14 +1,14 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import BoxStruct from "../data/BoxStruct";
+import BlockStruct from "../../data/BlockStruct";
 import { useDispatch } from "react-redux";
-import { dragObject } from "./AppSlice";
+import { dragObject } from "../AppSlice";
 
-interface BoxProps {
-  boxdata: BoxStruct;
+interface BlockProps {
+  blockdata: BlockStruct;
 }
 
-const Box = ({ boxdata }: BoxProps) => {
+const Block = ({ blockdata }: BlockProps) => {
   const dispatch = useDispatch();
 
   const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
@@ -16,8 +16,8 @@ const Box = ({ boxdata }: BoxProps) => {
     type: "BOX",
     item: () => {
       console.log("start");
-      dispatch(dragObject(boxdata));
-      return boxdata;
+      dispatch(dragObject(blockdata));
+      return blockdata;
     },
     end: () => {
       console.log("end");
@@ -33,10 +33,10 @@ const Box = ({ boxdata }: BoxProps) => {
       ref={dragPreview}
     >
       <div className="m-auto" role="Handle" ref={drag}>
-        {boxdata.title}
+        {blockdata.title}
       </div>
     </div>
   );
 };
 
-export default Box;
+export default Block;

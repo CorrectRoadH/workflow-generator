@@ -1,4 +1,4 @@
-export default interface BoxStruct {
+export default interface BlockStruct {
   title: string;
   argNum: number;
   args: Array<string>;
