@@ -1,5 +1,7 @@
 {
     "title": "Welcome to react using react-i18next",
-    "area2": "building block",
-    "area3": "Code"
+    "area2": "Building Area",
+    "area3": "Code Area",
+    "copy": "Copy Code",
+    "copy success": "Copy Success!"
 }

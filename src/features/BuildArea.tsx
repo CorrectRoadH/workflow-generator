@@ -11,7 +11,7 @@ const BuildArea = () => {
   const presentComponent = useSelector(
     (state: RootState) => state.app.presentComponent
   );
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [_hasDropped, setHasDropped] = useState(false);
   const [_hasDroppedOnChild, setHasDroppedOnChild] = useState(false);

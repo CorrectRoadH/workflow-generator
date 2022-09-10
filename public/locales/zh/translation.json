@@ -1,5 +1,7 @@
 {
     "title": "Welcome to react using react-i18next",
     "area2": "积木区",
-    "area3": "代码区"
+    "area3": "代码区",
+    "copy": "复制代码",
+    "copy success": "复制成功!"
 }

@@ -5,8 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const CodeArea = () => {
   const code = useSelector((state: RootState) => state.app.code);
-  const { t, i18n } = useTranslation();
-
+  const { t } = useTranslation();
   return (
     <div className="bg-red-500 h-screen">
       {t("area3")}
@@ -15,6 +14,17 @@ const CodeArea = () => {
         value={code}
         className="h-96 w-full bg-black text-white"
       ></textarea>
+      <button
+        className="bg-white m-2"
+        onClick={() => {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(code);
+          }
+          alert(t("copy success"));
+        }}
+      >
+        {t("copy")}
+      </button>
     </div>
   );
 };
