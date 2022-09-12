@@ -7,15 +7,17 @@ import {
   moveToContainer,
   setComponentInputValue,
 } from "../AppSlice";
-import VisualBlock from "./VisualBlock";
 import { RootState } from "../../store";
 import ShowComponent from "./ShowComponent";
+import { useTranslation } from "react-i18next";
 
 const VisualBase = ({ blockdata }: VisualBlockProps) => {
   const dispatch = useDispatch();
   const presentComponent = useSelector(
     (state: RootState) => state.app.presentComponent
   );
+
+  const { t } = useTranslation();
 
   const [_hasDropped, setHasDropped] = useState(false);
   const [_hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
@@ -87,10 +89,8 @@ const VisualBase = ({ blockdata }: VisualBlockProps) => {
         <div>Github Workflow Base</div>
         <br />
         <div className="m-auto w-full">
-          参数:
-          {interState}
-          子组件:
-          {childrenElement}
+          {t("parameter")}:{interState}
+          {t("children component")}:{childrenElement}
         </div>
       </div>
     </div>

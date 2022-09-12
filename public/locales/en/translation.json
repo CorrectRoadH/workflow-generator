@@ -3,5 +3,7 @@
     "area2": "Building Area",
     "area3": "Code Area",
     "copy": "Copy Code",
-    "copy success": "Copy Success!"
+    "copy success": "Copy Success!",
+    "parameter": "parameter",
+    "children component": "children Component"
 }

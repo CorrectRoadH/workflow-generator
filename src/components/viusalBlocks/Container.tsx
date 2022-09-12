@@ -10,8 +10,11 @@ import {
 } from "../AppSlice";
 import VisualBlock from "./VisualBlock";
 import { RootState } from "../../store";
+import { useTranslation } from "react-i18next";
 
 const Container = ({ blockdata }: VisualBlockProps) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const presentComponent = useSelector(
     (state: RootState) => state.app.presentComponent
@@ -94,10 +97,8 @@ const Container = ({ blockdata }: VisualBlockProps) => {
       <div className="flex flex-col m-2 w-full" role="Handle" ref={drop}>
         <div>{blockdata.title}</div>
         <div className="m-auto w-full">
-          参数:
-          {interState}
-          子组件:
-          {childrenElement}
+          {t("parameter")}:{interState}
+          {t("children component")}:{childrenElement}
         </div>
       </div>
     </div>
