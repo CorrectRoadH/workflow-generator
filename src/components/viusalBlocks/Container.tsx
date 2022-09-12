@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDrag } from "react-dnd";
-import { VisualBlockProps } from "../viusalBlocks/VisualBlockProps";
+import { VisualBlockProps } from "./VisualBlockProps";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +8,7 @@ import {
   moveToContainer,
   setComponentInputValue,
 } from "../AppSlice";
-import VisualBlock from "../viusalBlocks/VisualBlock";
+import VisualBlock from "./VisualBlock";
 import { RootState } from "../../store";
 
 const Container = ({ boxdata }: VisualBlockProps) => {
@@ -91,7 +91,7 @@ const Container = ({ boxdata }: VisualBlockProps) => {
       ref={dragPreview}
       style={{ backgroundColor }}
     >
-      &gt;
+ 
       <div className="m-auto" role="Handle" ref={drop}>
         阶段1:
         {boxdata.title}

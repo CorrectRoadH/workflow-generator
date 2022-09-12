@@ -6,4 +6,5 @@ export default interface BlockStruct {
   componentType: string;
   code: string;
   children: Array<number>;
+  childrenInstance: Array<BlockStruct> | undefined;
 }

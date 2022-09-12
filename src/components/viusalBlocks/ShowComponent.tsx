@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../blocks/Container";
+import Container from "./Container";
 import VisualBlock from "./VisualBlock";
 import { VisualBlockProps } from "./VisualBlockProps";
 

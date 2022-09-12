@@ -55,6 +55,21 @@ export const counterSlice = createSlice({
       );
       state.presentComponent.push(new_instance);
       // 因为 isTop默认是true，这里不用初始化。
+
+      // 把子组件实例化
+      if (state.dragObejct.childrenInstance !== undefined) {
+        state.dragObejct.childrenInstance.forEach((item) => {
+          const new_children_instance = createBoxInstance(
+            item,
+            state.presentComponent.length
+          );
+          new_children_instance.inTop = false;
+          state.presentComponent[new_instance.id].children.push(
+            new_children_instance.id
+          );
+          state.presentComponent.push(new_children_instance);
+        });
+      }
     },
     dragObject: (state, action: PayloadAction<BlockStruct>) => {
       state.dragObejct = action.payload;

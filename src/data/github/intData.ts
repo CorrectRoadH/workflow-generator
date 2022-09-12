@@ -11,6 +11,7 @@ export const githubComponentData = new Array<BlockStruct>(
       - name: $replace0$
         run: |
           $replace1$`,
+    childrenInstance: undefined,
     children: [],
   },
   {
@@ -27,6 +28,7 @@ on:
       - $replace1$
 
 jobs:`,
+    childrenInstance: undefined,
     children: [],
   },
   {
@@ -34,24 +36,34 @@ jobs:`,
     argNum: 1,
     args: [],
     argsTip: ["你的key:"],
-    componentType: "Stage",
+    componentType: "container",
     code: `
   aur-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@<TAG>
-        with:
-          pkgname: my-awesome-package
-          pkgbuild: ./PKGBUILD
-          commit_username: \${{ secrets.AUR_USERNAME }}
-          commit_email: \${{ secrets.AUR_EMAIL }}
-          ssh_private_key: \${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Update AUR package
-          ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
     `,
+    childrenInstance: [
+      {
+        title: "上传到aur shell",
+        argNum: 2,
+        args: ["Publish AUR package", "<TAG>"],
+        argsTip: ["任务名", "TAG"],
+        componentType: "block",
+        code: `    - name: $replace0$
+          uses: KSXGitHub/github-actions-deploy-aur@$replace1$
+          with:
+            pkgname: my-awesome-package
+            pkgbuild: ./PKGBUILD
+            commit_username: \${{ secrets.AUR_USERNAME }}
+            commit_email: \${{ secrets.AUR_EMAIL }}
+            ssh_private_key: \${{ secrets.AUR_SSH_PRIVATE_KEY }}
+            commit_message: Update AUR package
+            ssh_keyscan_types: rsa,dsa,ecdsa,ed25519`,
+        childrenInstance: undefined,
+        children: [],
+      },
+    ],
     children: [],
   },
   {
@@ -90,6 +102,7 @@ jobs:`,
     with:
         release_id: \${{ steps.create_release.outputs.id }}
     `,
+    childrenInstance: undefined,
     children: [],
   },
   {
@@ -102,6 +115,36 @@ jobs:`,
   name: $replace0$
     runs-on: $replace1$
     steps:`,
+    childrenInstance: undefined,
+    children: [],
+  },
+  {
+    title: "npm 编译",
+    argNum: 0,
+    args: [],
+    argsTip: [],
+    componentType: "Stage",
+    code: `
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 17.x, 18.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js \${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: \${{ matrix.node-version }}
+    - run: npm install -g yarn
+    - run: yarn
+    - run: yarn test
+    - run: yarn dist
+    `,
+    childrenInstance: undefined,
+
     children: [],
   }
 );
