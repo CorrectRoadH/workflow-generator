@@ -13,7 +13,7 @@ const Block = ({ blockdata }: BlockProps) => {
 
   const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
     // "type" is required. It is used by the "accept" specification of drop targets.
-    type: "BOX",
+    type: blockdata.componentType,
     item: () => {
       console.log("start");
       dispatch(dragObject(blockdata));

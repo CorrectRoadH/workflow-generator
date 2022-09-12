@@ -8,7 +8,7 @@ githubState.push({
   inTop: true,
   args: ["请输入名称", "请输入名称"],
   argsTip: ["脚本名", "分支名:"],
-  componentType: "singleComponent",
+  componentType: "base",
   code: `name: $replace0$
   
   on:
@@ -17,6 +17,7 @@ githubState.push({
         - $replace1$
   
   jobs:`,
+  childrenInstance: undefined,
   children: [],
 });
 

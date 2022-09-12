@@ -41,6 +41,21 @@ export const counterSlice = createSlice({
       state.presentComponent.push(new_instance);
       state.presentComponent[action.payload].children.push(new_instance.id);
 
+      // 把子组件实例化
+      if (state.dragObejct.childrenInstance !== undefined) {
+        state.dragObejct.childrenInstance.forEach((item) => {
+          const new_children_instance = createBoxInstance(
+            item,
+            state.presentComponent.length
+          );
+          new_children_instance.inTop = false;
+          state.presentComponent[new_instance.id].children.push(
+            new_children_instance.id
+          );
+          state.presentComponent.push(new_children_instance);
+        });
+      }
+
       // 子组件只能存id，不能是类型嵌套，因为就算他们本来是指向一个，但是在序列化之后就不是一个东西了。(等于深拷贝)
     },
     setComponentInputValue: (state, action: PayloadAction<InputValue>) => {

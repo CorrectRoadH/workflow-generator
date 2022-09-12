@@ -4,27 +4,27 @@ import { InputValue, setComponentInputValue } from "../AppSlice";
 import { VisualBlockProps } from "./VisualBlockProps";
 import { useDispatch } from "react-redux";
 
-const VisualBlock = ({ boxdata }: VisualBlockProps) => {
+const VisualBlock = ({ blockdata }: VisualBlockProps) => {
   const dispatch = useDispatch();
 
   const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
-    type: "ShowBox",
+    type: "VisualBlock",
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   }));
 
   const interState: Array<JSX.Element> = [];
-  for (let i = 0; i < boxdata.argNum; i++) {
+  for (let i = 0; i < blockdata.argNum; i++) {
     interState.push(
       <div key={i}>
-        <p>{boxdata.argsTip[i]}</p>
+        <p>{blockdata.argsTip[i]}</p>
         <input
-          value={boxdata.args[i]}
+          value={blockdata.args[i]}
           onChange={(event) => {
             dispatch(
               setComponentInputValue({
-                componentID: boxdata.id,
+                componentID: blockdata.id,
                 order: i,
                 value: event.target.value,
               } as InputValue)
@@ -42,7 +42,7 @@ const VisualBlock = ({ boxdata }: VisualBlockProps) => {
       ref={dragPreview}
     >
       <div className="m-auto" role="Handle" ref={drag}>
-        {boxdata.title}
+        {blockdata.title}
         参数:
         {interState}
       </div>

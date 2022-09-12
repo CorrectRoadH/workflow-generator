@@ -42,17 +42,17 @@ const BuildArea = () => {
   const componentList: Array<JSX.Element> = [];
   presentComponent.forEach((item: BoxStructInstance, index) => {
     if (item.inTop) {
-      componentList.push(<ShowComponent key={index} boxdata={item} />);
+      componentList.push(<ShowComponent key={index} blockdata={item} />);
     }
   });
 
-  let backgroundColor = "rgb(34 211 238)";
+  const backgroundColor = "white";
 
-  if (isOverCurrent || (isOver && undefined)) {
-    backgroundColor = "rgb(8 145 178)";
-  } else if (canDrop) {
-    backgroundColor = "rgb(6 182 212)";
-  }
+  // if (isOverCurrent || (isOver && undefined)) {
+  //   backgroundColor = "rgb(8 145 178)";
+  // } else if (canDrop) {
+  //   backgroundColor = "rgb(6 182 212)";
+  // }
 
   return (
     <div className="bg-cyan-400	 h-screen">

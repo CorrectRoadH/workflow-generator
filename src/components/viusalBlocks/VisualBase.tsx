@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDrag } from "react-dnd";
 import { VisualBlockProps } from "./VisualBlockProps";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,26 +9,20 @@ import {
 } from "../AppSlice";
 import VisualBlock from "./VisualBlock";
 import { RootState } from "../../store";
+import ShowComponent from "./ShowComponent";
 
-const Container = ({ blockdata }: VisualBlockProps) => {
+const VisualBase = ({ blockdata }: VisualBlockProps) => {
   const dispatch = useDispatch();
   const presentComponent = useSelector(
     (state: RootState) => state.app.presentComponent
   );
-
-  const [{ isDragging }, _drag, dragPreview] = useDrag(() => ({
-    type: "visualContainer",
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  }));
 
   const [_hasDropped, setHasDropped] = useState(false);
   const [_hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
 
   const [{ canDrop, isOver, isOverCurrent }, drop] = useDrop(
     () => ({
-      accept: "block",
+      accept: "container",
       drop(_item: unknown, monitor) {
         const didDrop = monitor.didDrop();
         if (didDrop) {
@@ -48,18 +41,18 @@ const Container = ({ blockdata }: VisualBlockProps) => {
     [setHasDropped, setHasDroppedOnChild]
   );
 
-  let backgroundColor = "rgb(217 249 157)";
+  let backgroundColor = "rgb(34 211 238)";
 
-  if (isOverCurrent || (isOver && false)) {
-    backgroundColor = "rgb(101 163 13)";
+  if (isOverCurrent || (isOver && undefined)) {
+    backgroundColor = "rgb(8 145 178)";
   } else if (canDrop) {
-    backgroundColor = "rgb(163 230 53)";
+    backgroundColor = "rgb(6 182 212)";
   }
 
   const childrenElement: Array<JSX.Element> = [];
   blockdata.children.forEach((id, index) =>
     childrenElement.push(
-      <VisualBlock key={index} blockdata={presentComponent[id]} />
+      <ShowComponent key={index} blockdata={presentComponent[id]} />
     )
   ); // todo using useMeno to improve Performent
 
@@ -88,7 +81,6 @@ const Container = ({ blockdata }: VisualBlockProps) => {
   return (
     <div
       className="flex rounded-md min-w-72 min-h-40 m-2"
-      ref={dragPreview}
       style={{ backgroundColor }}
     >
       <div className="m-auto" role="Handle" ref={drop}>
@@ -103,4 +95,4 @@ const Container = ({ blockdata }: VisualBlockProps) => {
   );
 };
 
-export default Container;
+export default VisualBase;
