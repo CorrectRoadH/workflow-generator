@@ -14,17 +14,18 @@ const CodeArea = () => {
         value={code}
         className="h-96 w-full bg-black text-white"
       ></textarea>
-      <button
-        className="bg-white m-2"
-        onClick={() => {
-          if (navigator.clipboard) {
-            navigator.clipboard.writeText(code);
-          }
-          alert(t("copy success"));
-        }}
-      >
-        {t("copy")}
-      </button>
+      <div className="flex bg-blue-200 hover:bg-blue-300 rounded-md	w-48	h-10 m-auto">
+        <button className="m-auto 	w-48	h-10 "
+          onClick={() => {
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(code);
+            }
+            alert(t("copy success"));
+          }}
+        >
+          {t("copy")}
+        </button>
+      </div>
     </div>
   );
 };

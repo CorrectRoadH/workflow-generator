@@ -83,13 +83,15 @@ const VisualBase = ({ blockdata }: VisualBlockProps) => {
       className="flex rounded-md min-w-72 min-h-40 m-2"
       style={{ backgroundColor }}
     >
-      <div className="m-auto" role="Handle" ref={drop}>
-        阶段1:
-        {blockdata.title}
-        参数:
-        {interState}
-        子组件:
-        {childrenElement}
+      <div className="flex flex-col m-2 w-full" role="Handle" ref={drop}>
+        <div>Github Workflow Base</div>
+        <br />
+        <div className="m-auto w-full">
+          参数:
+          {interState}
+          子组件:
+          {childrenElement}
+        </div>
       </div>
     </div>
   );

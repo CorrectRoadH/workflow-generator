@@ -46,7 +46,7 @@ const BuildArea = () => {
     }
   });
 
-  const backgroundColor = "white";
+  // const backgroundColor = "white";
 
   // if (isOverCurrent || (isOver && undefined)) {
   //   backgroundColor = "rgb(8 145 178)";
@@ -55,14 +55,28 @@ const BuildArea = () => {
   // }
 
   return (
-    <div className="bg-cyan-400	 h-screen">
+    <div
+      className="	 h-screen"
+      style={{
+        backgroundColor: "#ebf0fa",
+        backgroundImage:
+          "linear-gradient(90deg,#ffffff 10%, rgba(0, 0, 0, 0) 10%), linear-gradient(#ffffff 10%, rgba(0, 0, 0, 0) 10%)",
+        backgroundSize: "20px 20px",
+      }}
+    >
       {t("area2")}
-      <div className="flex flex-col" style={{ backgroundColor }}>
-        <button className="bg-white " onClick={() => dispatch(generageCode())}>
-          generate Code
-        </button>
+      <div className="flex flex-col">
+        <div className="flex bg-blue-200 hover:bg-blue-300 rounded-md	w-64	h-10 m-auto">
+          <button
+            className="m-auto 	w-48	h-10 "
+            onClick={() => dispatch(generageCode())}
+          >
+            Generate Code
+          </button>
+        </div>
         <br />
-        <div className="h-full" ref={drop}>
+
+        <div className="h-full bg-transparent" ref={drop}>
           Drop Target To Here:
           {componentList}
         </div>
