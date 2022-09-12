@@ -1,8 +1,9 @@
 {
-  "name": "react-boilerplate",
+  "name": "workflow-generator",
   "version": "1.0.0",
   "main": "src/app.js",
-  "license": "MIT",
+  "license": "AGPL-3.0",
+  "author": "CorrectRoadH",
   "scripts": {
     "start": "yarn dev",
     "test": "vitest run --coverage",
