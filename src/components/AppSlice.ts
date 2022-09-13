@@ -6,6 +6,7 @@ import BlockStructInstance, {
   createBoxInstance,
 } from "../data/BlockStructInstance";
 import githubState from "../data/github/githubState";
+import getComponentCode from "../utils/getComponentCode";
 
 export interface InputValue {
   componentID: number;
@@ -94,28 +95,7 @@ export const counterSlice = createSlice({
     },
     generageCode: (state) => {
       // 没办法做成自动触发，挺坑的，回头研究一下吧。
-      let code = "";
-      state.presentComponent.forEach((component) => {
-        if (component.inTop) {
-          let temp_code = component.code;
-          for (let i = 0; i < component.argNum; i++) {
-            temp_code = temp_code.replace(`$replace${i}$`, component.args[i]);
-          }
-          code += temp_code;
-          component.children.forEach((id) => {
-            let ctemp_code = state.presentComponent[id].code;
-            for (let i = 0; i < state.presentComponent[id].argNum; i++) {
-              ctemp_code = ctemp_code.replace(
-                `$replace${i}$`,
-                state.presentComponent[id].args[i]
-              );
-            }
-
-            code += ctemp_code;
-          });
-        }
-      });
-      state.code = code;
+      state.code = getComponentCode(0, state.presentComponent);
     },
   },
 });
