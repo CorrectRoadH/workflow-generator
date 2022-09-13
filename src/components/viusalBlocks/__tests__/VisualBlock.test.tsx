@@ -21,6 +21,7 @@ it("renders <VisualBlock /> block", () => {
               argsTip: [],
               componentType: "block",
               code: `234234`,
+              parentID: 0,
               children: [],
               childrenInstance: undefined,
               id: 1,
@@ -31,5 +32,5 @@ it("renders <VisualBlock /> block", () => {
       </DndProvider>
     </Provider>
   );
-  expect(getByText(`hello\n参数:`)).toBeTruthy();
+  expect(getByText(`hello`)).toBeTruthy();
 });

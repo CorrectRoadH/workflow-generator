@@ -42,7 +42,7 @@ const VisualBlock = ({ blockdata }: VisualBlockProps) => {
       ref={dragPreview}
     >
       <div className="m-auto" role="Handle" ref={drag}>
-        {blockdata.title}
+        <div>{blockdata.title}</div>
         参数:
         {interState}
       </div>
