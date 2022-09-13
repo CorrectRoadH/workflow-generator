@@ -2,9 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import BlockStruct from "../data/BlockStruct";
 import { githubComponentData } from "../data/github/intData";
-import BlockStructInstance, {
-  createBoxInstance,
-} from "../data/BlockStructInstance";
+import BlockStructInstance from "../data/BlockStructInstance";
+import createBoxInstance from "../utils/createBoxInstance";
 import githubState from "../data/github/githubState";
 import getComponentCode from "../utils/getComponentCode";
 
@@ -36,9 +35,10 @@ export const counterSlice = createSlice({
     moveToContainer: (state, action: PayloadAction<number>) => {
       const new_instance = createBoxInstance(
         state.dragObejct,
-        state.presentComponent.length
+        state.presentComponent.length,
+        false,
+        action.payload
       );
-      new_instance.inTop = false;
       state.presentComponent.push(new_instance);
       state.presentComponent[action.payload].children.push(new_instance.id);
 
@@ -47,7 +47,9 @@ export const counterSlice = createSlice({
         state.dragObejct.childrenInstance.forEach((item) => {
           const new_children_instance = createBoxInstance(
             item,
-            state.presentComponent.length
+            state.presentComponent.length,
+            false,
+            new_instance.id
           );
           new_children_instance.inTop = false;
           state.presentComponent[new_instance.id].children.push(
@@ -65,9 +67,12 @@ export const counterSlice = createSlice({
       ] = action.payload.value;
     },
     move: (state) => {
+      // todo 这里和 moveToContainer 代码重叠度太多，也没有用迭代，回头这里重构一下。
       const new_instance = createBoxInstance(
         state.dragObejct,
-        state.presentComponent.length
+        state.presentComponent.length,
+        true,
+        0 // 这里是0，是因为base组件的是第一个组件，他id肯定是0
       );
       state.presentComponent.push(new_instance);
       // 因为 isTop默认是true，这里不用初始化。
@@ -77,7 +82,9 @@ export const counterSlice = createSlice({
         state.dragObejct.childrenInstance.forEach((item) => {
           const new_children_instance = createBoxInstance(
             item,
-            state.presentComponent.length
+            state.presentComponent.length,
+            false,
+            new_instance.id
           );
           new_children_instance.inTop = false;
           state.presentComponent[new_instance.id].children.push(
