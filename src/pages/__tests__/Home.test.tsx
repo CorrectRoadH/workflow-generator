@@ -1,9 +1,7 @@
 import React from "react";
 import { expect, it } from "vitest";
-import { renderWithRouter } from "../../utils/rtl-wrapper";
 import { store } from "../../store";
 import { Provider } from "react-redux";
-
 import Home from "../Home";
 import { render } from "@testing-library/react";
 
