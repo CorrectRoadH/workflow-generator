@@ -1,12 +1,11 @@
 import { expect, it } from "vitest";
 import BlockStruct from "../../data/BlockStruct";
 import BlockStructInstance from "../../data/BlockStructInstance";
-import createBoxInstance from "../createBoxInstance";
+import createBlockInstance from "../createBlockInstance";
 
-
-// more test instance 
+// more test instance
 // when have children
-// when have multi children 
+// when have multi children
 // when children have children
 // and in futuer. when that data stucture change to a single children node and a brother node
 it("test createBoxInstance when a singel component", () => {
@@ -22,7 +21,7 @@ it("test createBoxInstance when a singel component", () => {
   };
 
   expect(
-    createBoxInstance(blockdata, 0, true, -1) ===
+    createBlockInstance(blockdata, 0, true, -1) ===
       ({
         title: "hello",
         argNum: 0,

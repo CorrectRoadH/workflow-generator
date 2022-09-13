@@ -2,7 +2,7 @@ import _ from "lodash";
 import BlockStruct from "../data/BlockStruct";
 import BlockStructInstance from "../data/BlockStructInstance";
 
-const createBoxInstance = (
+const createBlockInstance = (
   blockdata: BlockStruct,
   id: number,
   isTop: boolean,
@@ -16,4 +16,4 @@ const createBoxInstance = (
   newInstance.parentID = parentID;
   return newInstance;
 };
-export default createBoxInstance;
+export default createBlockInstance;

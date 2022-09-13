@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import BlockStruct from "../data/BlockStruct";
-import { githubComponentData } from "../data/github/intData";
+import { githubComponentData } from "../data/github/intiData";
 import BlockStructInstance from "../data/BlockStructInstance";
-import createBoxInstance from "../utils/createBoxInstance";
+import createBlockInstance from "../utils/createBlockInstance";
 import githubState from "../data/github/githubState";
 import getComponentCode from "../utils/getComponentCode";
 
@@ -33,7 +33,7 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     moveToContainer: (state, action: PayloadAction<number>) => {
-      const new_instance = createBoxInstance(
+      const new_instance = createBlockInstance(
         state.dragObejct,
         state.presentComponent.length,
         false,
@@ -45,7 +45,7 @@ export const counterSlice = createSlice({
       // 把子组件实例化
       if (state.dragObejct.childrenInstance !== undefined) {
         state.dragObejct.childrenInstance.forEach((item) => {
-          const new_children_instance = createBoxInstance(
+          const new_children_instance = createBlockInstance(
             item,
             state.presentComponent.length,
             false,
@@ -68,7 +68,7 @@ export const counterSlice = createSlice({
     },
     move: (state) => {
       // todo 这里和 moveToContainer 代码重叠度太多，也没有用迭代，回头这里重构一下。
-      const new_instance = createBoxInstance(
+      const new_instance = createBlockInstance(
         state.dragObejct,
         state.presentComponent.length,
         true,
@@ -80,7 +80,7 @@ export const counterSlice = createSlice({
       // 把子组件实例化
       if (state.dragObejct.childrenInstance !== undefined) {
         state.dragObejct.childrenInstance.forEach((item) => {
-          const new_children_instance = createBoxInstance(
+          const new_children_instance = createBlockInstance(
             item,
             state.presentComponent.length,
             false,
